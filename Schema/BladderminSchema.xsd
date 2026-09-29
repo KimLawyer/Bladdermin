@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="Bladdermin_XML_Library" xmlns:Bladdermin="Bladdermin_XML_Library" >
+  <xs:element name="BladderminProtocol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="version" type="xs:unsignedByte" />
+        <xs:element name="ProtocolMetaData">
+          <xs:complexType>
+            <xs:attribute name="Name" type="xs:string" use="required" >
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[This is the name of the Protocol that will display in the Protocol selection drop down menu on the script user interface.]]>
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="NodesTreatable" type="xs:boolean" use="required" >
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[This indicates whether the protocol enables nodal selection on the script user interface.]]>
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="MultiPhase" type="xs:boolean" use="required" >
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[This is mandatory so that the script knows whether it is looking for a plan or a plan sum when the protocol is selected.]]>
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Constraints" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>
+              <![CDATA[This defines the constraints. It is mandatory to have one broad Constraints group if there are seperate constraint groupings for nodal vs non-nodal involvement.]]>
+            </xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Constraint" maxOccurs="unbounded">
+                <xs:annotation>
+                  <xs:documentation>
+                    <![CDATA[This defines each specific constraint. Each constraint must have its own constraint tag.]]>
+                  </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required" >
+                    <xs:annotation>
+                      <xs:documentation>
+                        <![CDATA[This is the name of the constraint that will show up in the Constraint Summary of the user interface.]]>
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="DoseValue" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation>
+                        <![CDATA[This is the dose value of the constraint. It must be of type double and valued in cGy.]]>
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="DoseUnit" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>
+                        <![CDATA[This is the dose unit of the constraint. It must be of type string and valued in cGy.]]>
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="VolumePresentation" type="xs:string" use="required">
+                    <xs:annotation>
+                      <xs:documentation>
+                        <![CDATA[This is the units of the constraint value. Enter "relative" to display the constraint as a percentage.]]>
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Volume" type="xs:double" use="required">
+                    <xs:annotation>
+                      <xs:documentation>
+                        <![CDATA[This is the constraint value. It must be of type double.]]>
+                      </xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="Nodes" type="xs:boolean" use="required" >
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[A boolean to indicate whether nodes are treated or not. This impacts the constraints and the creation of the low dose isodose structure. Enter "true" or "false".]]>
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="multiPhase" type="xs:boolean" use="required" >
+              <xs:annotation>
+                <xs:documentation>
+                  <![CDATA[A boolean to indicate whether the plan is single or multi-phase which determines whether the script runs on a plan vs a plan sum. Enter "true" or "false".]]>
+                </xs:documentation>
+              </xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>   
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

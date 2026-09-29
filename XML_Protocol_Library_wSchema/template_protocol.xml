@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<BladderminProtocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation ="Bladdermin_XML_Library [enter pathway where schema is found]"
+                    xmlns="Bladdermin_XML_Library">
+	<version>1</version>
+	<ProtocolMetaData Name="Protocol name" NodesTreatable="false" MultiPhase="false"/>
+	<Constraints Nodes="false" multiPhase="false">
+		<Constraint Name="V36 ≤ 10%" DoseValue="3600" DoseUnit="cGy" VolumePresentation="Relative" Volume="10"/>
+		<Constraint Name="V33 ≤ 20%" DoseValue="3300" DoseUnit="cGy" VolumePresentation="Relative" Volume="20"/>
+		<Constraint Name="V18 ≤ 45%" DoseValue="1800" DoseUnit="cGy" VolumePresentation="Relative" Volume="45"/>
+	</Constraints>
+	<Constraints Nodes="true" multiPhase="false">
+		<Constraint Name="V36 ≤ 10%" DoseValue="3600" DoseUnit="cGy" VolumePresentation="Relative" Volume="10"/>
+		<Constraint Name="V33 ≤ 20%" DoseValue="3300" DoseUnit="cGy" VolumePresentation="Relative" Volume="20"/>
+		<Constraint Name="V18 ≤ 45%" DoseValue="1800" DoseUnit="cGy" VolumePresentation="Relative" Volume="45"/>
+	</Constraints>
+</BladderminProtocol>
